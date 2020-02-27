@@ -11,7 +11,8 @@
   "license": "MIT",
   "dependencies": {
     "azure-pipelines-task-lib": "^2.9.3",
-    "uuid": "^3.0.1"
+    "uuid": "^3.0.1",
+    "vss-web-extension-sdk": "^5.141.0"
   },
   "devDependencies": {
     "@types/node": "^13.7.6",

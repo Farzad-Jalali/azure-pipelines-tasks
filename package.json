@@ -1,5 +1,5 @@
 {
-  "name": "Agent.Tasks",
+  "name": "azure-extensions.f2kr.com",
   "version": "0.5.0",
   "description": "Tasks for the Azure Pipelines build system",
   "main": "make.js",

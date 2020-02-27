@@ -1,0 +1,26 @@
+{
+    "manifestVersion": 1,
+    "id": "f2kr-tag-by-git-branch",
+    "publisher": "",
+    "version": "0.0.1",
+    "name": "Tag by git branch tools",
+    "description": "A sample Visual Studio Services extension which provides tags by branch",
+    "public": true,
+    "categories": ["Azure Repos"],
+    "targets": [
+        {
+            "id": "Microsoft.VisualStudio.Services"
+        }
+    ],
+    "files": [
+        {
+            "path": "my-hub.html",
+            "addressable": true
+        },
+        {
+            "path": "node_modules/vss-web-extension-sdk/lib",
+            "addressable": true,
+            "packagePath": "lib"
+        }
+    ]
+}
