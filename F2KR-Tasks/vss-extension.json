@@ -1,15 +1,16 @@
 {
     "manifestVersion": 1,
-    "id": "F2KR-Branch-Based-Script-build-extension",
-    "name": "F2KR-Branch-Based-Script Build Tools",
-    "version": "0.0.1",
-    "publisher": "F2KR.com",
+    "id": "F2KR-build-extension",
+    "name": "Script Builder",
+    "version": "0.0.2",
+    "publisher": "Farzad",
     "targets": [{
         "id": "Microsoft.VisualStudio.Services"
     }],
-    "description": "Tools for building with F2KR. Includes two build tasks and one template.",
+    "public": true,
+    "description": "building script based on git branch name (support pattern) e.g. Dockerfile , kubernetes yaml file (including Blue/Greendeployment) " ,
     "categories": [
-        "Build and release"
+        "Azure Pipelines"
     ],
     "icons": {
         "default": "images/extension-icon.png"
