@@ -1,18 +1,18 @@
 {
-    "id": "45b17b67-7584-4179-b644-e8be2c19da33",
-    "name": "MyPlainTask2",
-    "friendlyName": "MyPlainTask2",
-    "description": "MyPlainTask2",
+    "id": "a9b490ae-5093-4b59-8370-190dd01fa9b9",
+    "name": "F2KR-Task2",
+    "friendlyName": "F2KR-Task2",
+    "description": "F2KR-Task2",
     "helpMarkDown": "[More Information](http://go.microsoft.com/fwlink/?LinkID=613724)",
     "category": "Build",
     "visibility": [
-                "Build"
+                "Build","Release"
                   ],    
-    "author": "Microsoft Corporation",
+    "author": "F2KR ltd",
     "version": {
-        "Major": 1,
+        "Major": 0,
         "Minor": 0,
-        "Patch": 0
+        "Patch": 1
     },
     "demands" : [
         "msbuild"

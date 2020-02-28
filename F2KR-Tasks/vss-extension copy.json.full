@@ -44,5 +44,16 @@
                 "name": "F2KR-Task2"
             }
         }
+        //,
+        // {
+        //     "id": "Template1",
+        //     "type": "ms.vss-build.template",
+        //     "targets": [
+        //         "ms.vss-build.templates"
+        //     ],
+        //     "properties": {
+        //         "name": "Template1"
+        //     }
+        // }
     ]
 }
