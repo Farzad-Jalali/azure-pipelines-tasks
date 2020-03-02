@@ -1,12 +1,14 @@
 {
     "id": "4d20c46a-fd54-4958-be18-eda862517581",
     "name": "F2KR-Task1",
-    "friendlyName": "F2KR-Task1",
+    "friendlyName": "Yaml File Generator for Kubernetes",
     "description": "F2KR-Task1",
+    "helpUrl": "https://docs.microsoft.com/azure/devops/pipelines/tasks/utility/powershell",
     "helpMarkDown": "[More Information](http://go.microsoft.com/fwlink/?LinkID=613724)",
     "category": "Build",
     "visibility": [
-                "Build"
+                "Build",
+                "Release"
                   ],    
     "author": "F2KR ltd",
     "version": {
@@ -17,7 +19,9 @@
     "demands" : [
         "msbuild"
     ],
-    "minimumAgentVersion": "1.99.0",
+    "minimumAgentVersion": "2.115.0",
+    "showEnvironmentVariables": true,
+
     "groups": [
         {
             "name":"advanced",
@@ -26,117 +30,64 @@
         }
     ],
     "inputs": [
-        { 
-            "name": "solution", 
-            "type": "filePath", 
-            "label": "Solution", 
-            "defaultValue":"**\\*.sln", 
-            "required":true,
-            "helpMarkDown": "Relative path from repo root of the solution(s) to run.  Wildcards can be used.  For example, `**\\*.sln` for all sln files in all sub folders."  
-        },
-        { 
-            "name": "platform", 
-            "type": "string", 
-            "label": "Platform", 
-            "defaultValue":"", 
-            "required":false
-        },
-        { 
-            "name": "configuration", 
-            "type": "string", 
-            "label": "Configuration", 
-            "defaultValue":"", 
-            "required":false 
-        },
-        { 
-            "name": "msbuildArguments", 
-            "type": "string", 
-            "label": "MSBuild Arguments", 
-            "defaultValue":"", 
-            "required":false,
-            "helpMarkDown": "Additional arguments passed to MSBuild."
-        },
-        { 
-            "name": "clean", 
-            "type": "boolean", 
-            "label": "Clean", 
-            "defaultValue": "false", 
-            "required": false 
-        },
-        { 
-            "name": "restoreNugetPackages", 
-            "type": "boolean", 
-            "label": "Restore NuGet Packages", 
-            "defaultValue": "true", 
-            "required": false 
-        },
-        { 
-            "name": "logProjectEvents", 
-            "type": "boolean", 
-            "label": "Record Project Details", 
-            "defaultValue": "false", 
+        {
+            "name": "deploymentStrategy",
+            "type": "radio",
+            "label": "Type",
             "required": false,
-            "groupName":"advanced" 
-        },
-        {
-            "name":"msbuildLocationMethod",
-            "type":"radio",
-            "label":"MSBuild",
-            "required":false,
-            "groupName":"advanced",
-            "defaultValue":"version",
+            "defaultValue": "kubernetes",
+            "helpMarkDown": "Target script type: File Path or Inline",
             "options": {
-                "version":"Version",
-                "location":"Specify Location"
-            }   
-        },
-        {
-            "name":"msbuildVersion",
-            "type":"pickList",
-            "label":"MSBuild Version",
-            "required":false,
-            "groupName":"advanced",
-            "defaultValue":"14.0",
-            "helpMarkDown": "If the preferred version cannot be found, the latest version found will be used instead.",
-            "visibleRule": "msbuildLocationMethod = version",
-            "options": {
-                "latest":"Latest",
-                "14.0":"MSBuild 14.0",
-                "12.0":"MSBuild 12.0",
-                "4.0":"MSBuild 4.0"
+                "serviceYaml": "simply just service file",
+                "deploymentyaml": "Dockerfile",
+                "ingressYaml": "branch name based variable",
+                "blueGreen": "produce 8 yaml files to support Blue Green"
             }
         },
-        { 
-            "name": "msbuildArchitecture", 
-            "type": "pickList", 
-            "label": "MSBuild Architecture", 
-            "defaultValue":"x86", 
-            "required":false,
-            "helpMarkDown": "Optionally supply the architecture (x86, x64) of MSBuild to run.",
-            "groupName":"advanced",
-            "visibleRule": "msbuildLocationMethod = version",
-            "options":{
-                "x86":"MSBuild x86",
-                "x64":"MSBuild x64"
-            }
+        {
+            "name": "dockerfileTemplate",
+            "type": "multiLine",
+            "label": "Dockerfile template",
+            "visibleRule": "targetType = dockerfile",
+            "required": true,
+            "defaultValue": "",
+            "helpMarkDown": "bla bla bla..."
         },
-        { 
-            "name": "msbuildLocation", 
-            "type": "string", 
-            "label": "Path to MSBuild", 
-            "defaultValue":"", 
-            "required":false,
-            "helpMarkDown": "Optionally supply the path to MSBuild.",  
-            "visibleRule": "msbuildLocationMethod = location",
-            "groupName":"advanced"
-        }
+        {
+            "name": "arguments",
+            "type": "string",
+            "label": "Arguments",
+            "visibleRule": "targetType = filePath",
+            "required": false,
+            "defaultValue": "",
+            "helpMarkDown": "Arguments passed to the PowerShell script. Either ordinal parameters or named parameters."
+        },
+
     ],
-    "instanceNameFormat": "Build solution $(solution)",
+    "instanceNameFormat": "PowerShell Script",
     "execution": {
-        "PowerShell": {
-            "target": "$(currentDirectory)\\MSBuild.ps1",
-            "argumentFormat": "",
-            "workingDirectory": "$(currentDirectory)"
+        "PowerShell3": {
+            "target": "powershell.ps1",
+            "platforms": [
+                "windows"
+            ]
+        },
+        "Node": {
+            "target": "powershell.js",
+            "argumentFormat": ""
         }
+    },
+    "messages": {
+        "GeneratingScript": "Generating script.",
+        "JS_ExitCode": "PowerShell exited with code '%s'.",
+        "JS_FormattedCommand": "Formatted command: %s",
+        "JS_InvalidErrorActionPreference": "Invalid ErrorActionPreference '%s'. The value must be one of: 'Stop', 'Continue', or 'SilentlyContinue'",
+        "JS_InvalidFilePath": "Invalid file path '%s'. A path to a .ps1 file is required.",
+        "JS_Stderr": "PowerShell wrote one or more lines to the standard error stream.",
+        "PS_ExitCode": "PowerShell exited with code '{0}'.",
+        "PS_FormattedCommand": "Formatted command: {0}",
+        "PS_InvalidErrorActionPreference": "Invalid ErrorActionPreference '{0}'. The value must be one of: 'Stop', 'Continue', or 'SilentlyContinue'",
+        "PS_InvalidFilePath": "Invalid file path '{0}'. A path to a .ps1 file is required.",
+        "PS_UnableToDetermineExitCode": "Unexpected exception. Unable to determine the exit code from powershell."
     }
 }

@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "F2KR-build-extension",
     "name": "Script Builder",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "publisher": "Farzad",
     "targets": [{
         "id": "Microsoft.VisualStudio.Services"
@@ -20,6 +20,14 @@
         "Install",
         "Continuous Integration",
         "Continuous Delivery",
+        "branch",
+        "git branch",
+        "Dockerfile",
+        "yaml",
+        "k8s",
+        "kubernetes",
+        "blue/green",
+        "custom",
         "Build",
         "Release",
         "Azure Pipelines",
@@ -27,24 +35,21 @@
         "Visual Studio Extensions"
       ],
     "icons": {
-        "default": "images/extension-icon.png"
+        "default": "images/icon-developer-icon-128.png"
     },
     "files": [{
             "path": "F2KR-Task1"
         },
         {
             "path": "F2KR-Task2"
-        },
-        {
-            "path": "Resources"
         }
     ],
     "content": {
         "details": {
-          "path": "Resources/overview.md"
+          "path": "overview.md"
         },
         "license": {
-          "path": "Resources/license.txt"
+          "path": "license.txt"
         }
       },
     "contributions": [{
