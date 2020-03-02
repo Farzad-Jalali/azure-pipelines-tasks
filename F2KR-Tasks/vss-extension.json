@@ -2,7 +2,7 @@
     "manifestVersion": 1,
     "id": "F2KR-build-extension",
     "name": "Script Builder",
-    "version": "0.0.2",
+    "version": "0.0.4",
     "publisher": "Farzad",
     "targets": [{
         "id": "Microsoft.VisualStudio.Services"
@@ -12,6 +12,20 @@
     "categories": [
         "Azure Pipelines"
     ],
+    "tags": [
+        "Extension",
+        "Marketplace",
+        "Publish",
+        "Package",
+        "Install",
+        "Continuous Integration",
+        "Continuous Delivery",
+        "Build",
+        "Release",
+        "Azure Pipelines",
+        "Azure DevOps Extensions",
+        "Visual Studio Extensions"
+      ],
     "icons": {
         "default": "images/extension-icon.png"
     },
@@ -22,9 +36,17 @@
             "path": "F2KR-Task2"
         },
         {
-            "path": "Template1"
+            "path": "Resources"
         }
     ],
+    "content": {
+        "details": {
+          "path": "Resources/overview.md"
+        },
+        "license": {
+          "path": "Resources/license.txt"
+        }
+      },
     "contributions": [{
             "id": "F2KR-Task1",
             "type": "ms.vss-distributed-task.task",
@@ -45,5 +67,20 @@
                 "name": "F2KR-Task2"
             }
         }
-    ]
+    ],
+    "links": {
+        "repository": {
+          "uri": "https://github.com/Microsoft/azure-devops-extension-tasks"
+        },
+        "issues": {
+          "uri": "https://github.com/Microsoft/azure-devops-extension-tasks/issues"
+        },
+        "support": {
+          "uri": "mailto:azdevopsintegrations@microsoft.com"
+        }
+      },
+      "repository": {
+        "type": "git",
+        "uri": "https://github.com/Microsoft/azure-devops-extension-tasks"
+      }
 }
