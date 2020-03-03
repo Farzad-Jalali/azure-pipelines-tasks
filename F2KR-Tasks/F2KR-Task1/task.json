@@ -62,6 +62,55 @@
             "defaultValue": "",
             "helpMarkDown": "Arguments passed to the PowerShell script. Either ordinal parameters or named parameters."
         },
+        {
+            "name": "errorActionPreference",
+            "type": "pickList",
+            "label": "ErrorActionPreference",
+            "required": false,
+            "defaultValue": "stop",
+            "options": {
+                "stop": "Stop",
+                "continue": "Continue",
+                "silentlyContinue": "SilentlyContinue"
+            },
+            "helpMarkDown": "Prepends the line `$ErrorActionPreference = 'VALUE'` at the top of your script."
+        },
+        {
+            "name": "failOnStderr",
+            "type": "boolean",
+            "label": "Fail on Standard Error",
+            "required": false,
+            "defaultValue": "false",
+            "helpMarkDown": "If this is true, this task will fail if any errors are written to the error pipeline, or if any data is written to the Standard Error stream. Otherwise the task will rely on the exit code to determine failure.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "ignoreLASTEXITCODE",
+            "type": "boolean",
+            "label": "Ignore $LASTEXITCODE",
+            "required": false,
+            "defaultValue": "false",
+            "helpMarkDown": "If this is false, the line `if ((Test-Path -LiteralPath variable:\\LASTEXITCODE)) { exit $LASTEXITCODE }` is appended to the end of your script. This will cause the last exit code from an external command to be propagated as the exit code of powershell. Otherwise the line is not appended to the end of your script.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "pwsh",
+            "type": "boolean",
+            "label": "Use PowerShell Core",
+            "required": false,
+            "defaultValue": "false",
+            "helpMarkDown": "If this is true, then on Windows the task will use pwsh.exe from your PATH instead of powershell.exe.",
+            "groupName": "advanced"
+        },
+        {
+            "name": "workingDirectory",
+            "type": "filePath",
+            "label": "Working Directory",
+            "required": false,
+            "defaultValue": "",
+            "helpMarkDown": "Working directory where the script is run.",
+            "groupName": "advanced"
+        }
 
     ],
     "instanceNameFormat": "PowerShell Script",
